@@ -1,0 +1,26 @@
+{
+  "name": "devflow-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "description": "DevFlow - Developer Project Management & Agile Team Collaboration Platform",
+  "scripts": {
+    "start:server": "npm --prefix server start",
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev",
+    "build:client": "npm --prefix client run build",
+    "test:server": "npm --prefix server test",
+    "test": "npm --prefix server test"
+  },
+  "keywords": [
+    "devflow",
+    "kanban",
+    "agile",
+    "sprints",
+    "github",
+    "developer-tools",
+    "socket.io",
+    "mongodb"
+  ],
+  "author": "DevFlow Core Team",
+  "license": "MIT"
+}
