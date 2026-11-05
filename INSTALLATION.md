@@ -1,6 +1,8 @@
 # DevFlow — Installation & Setup Runbook (INSTALLATION.md)
 
 **System:** DevFlow (Enterprise Agile Project Management & Live Developer Activity Platform)  
+**Author:** Prem Patel ([@PatelPrem123](https://github.com/PatelPrem123) / prempatel55299@gmail.com)  
+**Repository:** [https://github.com/PatelPrem123/DevFlown](https://github.com/PatelPrem123/DevFlown)  
 **Target Environment:** Local Development & Production Staging (Windows / Linux / macOS)  
 
 ---
@@ -18,10 +20,20 @@ Before initializing DevFlow, ensure the following core runtimes are installed:
 
 ---
 
-## 2. Environment Configuration
+## 2. Clone Repository & Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/PatelPrem123/DevFlown.git
+cd DevFlown
+```
+
+---
+
+## 3. Environment Configuration
 
 ### Server Configuration (`server/.env`)
-Copy the template configuration in `server/.env.example` to `server/.env`:
+Create or edit `server/.env` with the following baseline:
 
 ```env
 # Server Runtime Environment
@@ -52,27 +64,25 @@ GITHUB_WEBHOOK_SECRET=devflow_webhook_verification_secret_key_entropy
 
 ---
 
-## 3. Step-by-Step Installation
+## 4. Step-by-Step Installation & Launch
 
-### Step A: Install Server Dependencies
+### Step A: Install Server Dependencies & Seed Demo Dataset
 ```powershell
 cd server
 npm install
-```
 
-### Step B: Run Automated Tests
-Verify that the test suite runs and passes against the local database:
-```powershell
+# Run automated test suites (13 suites, 128 tests)
 npm test
-```
 
-### Step C: Launch the API Gateway
-```powershell
+# (Optional) Seed realistic demo workspace, project, tasks, and sprints
+node src/seedDemo.js
+
+# Launch the API Gateway
 npm run dev
 # Server starts on http://localhost:5000/api/v1
 ```
 
-### Step D: Install & Launch Client SPA (In a separate terminal)
+### Step B: Install & Launch Client SPA (In a separate terminal)
 ```powershell
 cd ../client
 npm install
@@ -82,8 +92,11 @@ npm run dev
 
 ---
 
-## 4. Verification Check
+## 5. Quick Verification & Demo Access
 
-Open your browser to:
-1. `http://localhost:5000/api/v1/health` — Expect `{"success": true, "data": {"status": "healthy", ...}}`
-2. `http://localhost:5173` — Expect the DevFlow workspace dashboard rendering with green "Phase 1 Verified" and active database connection indicator.
+1. Open your browser to **`http://localhost:5173`**.
+2. Click **"1-Click Launch"** on the sign-in page to enter the pre-populated **DevFlow Engineering Workspace** immediately.
+3. Or sign in manually with seeded credentials:
+   - **Email:** `alex.lead@devflow.io`
+   - **Password:** `DevFlow2026!`
+4. Verify backend health check: **`http://localhost:5000/api/v1/health`** — returns status `200 OK` with database status `connected`.

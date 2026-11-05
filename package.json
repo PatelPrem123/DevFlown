@@ -3,7 +3,17 @@
   "version": "1.0.0",
   "private": true,
   "description": "DevFlow - Developer Project Management & Agile Team Collaboration Platform",
+  "author": "Prem Patel <prempatel55299@gmail.com> (https://github.com/PatelPrem123)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PatelPrem123/DevFlown.git"
+  },
+  "homepage": "https://github.com/PatelPrem123/DevFlown#readme",
+  "bugs": {
+    "url": "https://github.com/PatelPrem123/DevFlown/issues"
+  },
   "scripts": {
+    "start": "npm --prefix server start",
     "start:server": "npm --prefix server start",
     "dev:server": "npm --prefix server run dev",
     "dev:client": "npm --prefix client run dev",
@@ -19,8 +29,10 @@
     "github",
     "developer-tools",
     "socket.io",
-    "mongodb"
+    "mongodb",
+    "react",
+    "vite",
+    "express"
   ],
-  "author": "DevFlow Core Team",
   "license": "MIT"
 }
