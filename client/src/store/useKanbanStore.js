@@ -29,7 +29,7 @@ export const useKanbanStore = create((set) => ({
 
       if (!sourceCol || !targetCol) return state;
 
-      const taskIndex = sourceCol.tasks.findIndex((t) => t._id === taskId);
+      const taskIndex = sourceCol.tasks.findIndex((t) => (t._id || t.id) === taskId);
       if (taskIndex === -1) return state;
 
       const [task] = sourceCol.tasks.splice(taskIndex, 1);
