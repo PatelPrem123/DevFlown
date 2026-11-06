@@ -49,6 +49,27 @@ app.use(express.json({
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(cookieParser(env.COOKIE_SECRET));
 
+// SEO Crawler Directives & Sitemap Endpoints
+app.get('/robots.txt', (req, res) => {
+  res.type('text/plain');
+  res.send(`User-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /socket.io/\nSitemap: https://devflow.io/sitemap.xml\n`);
+});
+
+app.get('/sitemap.xml', (req, res) => {
+  res.type('application/xml');
+  res.send(`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://devflow.io/</loc><changefreq>daily</changefreq><priority>1.00</priority></url>
+  <url><loc>https://devflow.io/pricing</loc><changefreq>daily</changefreq><priority>0.95</priority></url>
+  <url><loc>https://devflow.io/features</loc><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://devflow.io/kanban</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://devflow.io/sprints</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://devflow.io/github-sync</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://devflow.io/docs</loc><changefreq>monthly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://devflow.io/security</loc><changefreq>monthly</changefreq><priority>0.80</priority></url>
+</urlset>`);
+});
+
 // 5. Mount API Version 1 Gateway
 app.use('/api/v1', apiRouter);
 

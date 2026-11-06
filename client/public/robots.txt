@@ -1,0 +1,29 @@
+# DevFlow Enterprise Search Engine Directives
+# https://devflow.io/robots.txt
+
+User-agent: *
+Allow: /
+Allow: /pricing
+Allow: /features
+Allow: /kanban
+Allow: /sprints
+Allow: /github-sync
+Allow: /docs
+Allow: /security
+Allow: /sitemap.xml
+
+# Disallow internal API endpoints & session tokens
+Disallow: /api/
+Disallow: /socket.io/
+Disallow: /admin/
+Disallow: /auth/callback/
+
+# Googlebot specific optimizations
+User-agent: Googlebot
+Allow: /*.js
+Allow: /*.css
+Allow: /*.svg
+Allow: /*.png
+
+# Sitemaps declaration
+Sitemap: https://devflow.io/sitemap.xml

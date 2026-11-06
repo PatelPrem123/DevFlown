@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- Primary Landing Page -->
+  <url>
+    <loc>https://devflow.io/</loc>
+    <lastmod>2026-11-06T12:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+
+  <!-- Commercial E-Commerce Pricing & Product Plans -->
+  <url>
+    <loc>https://devflow.io/pricing</loc>
+    <lastmod>2026-11-06T12:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- Core Platform Features -->
+  <url>
+    <loc>https://devflow.io/features</loc>
+    <lastmod>2026-11-06T12:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- Fractional Kanban Engine -->
+  <url>
+    <loc>https://devflow.io/kanban</loc>
+    <lastmod>2026-11-06T12:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Agile Sprint Automation -->
+  <url>
+    <loc>https://devflow.io/sprints</loc>
+    <lastmod>2026-11-06T12:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- GitHub Webhook Ingress -->
+  <url>
+    <loc>https://devflow.io/github-sync</loc>
+    <lastmod>2026-11-06T12:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Engineering Documentation & API -->
+  <url>
+    <loc>https://devflow.io/docs</loc>
+    <lastmod>2026-11-06T12:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Security Architecture (OWASP, RBAC, Encryption) -->
+  <url>
+    <loc>https://devflow.io/security</loc>
+    <lastmod>2026-11-06T12:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+</urlset>

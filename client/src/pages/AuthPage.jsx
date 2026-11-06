@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useAuthStore } from '../store/useAuthStore.js';
-import { Layers, ShieldCheck, Zap, GitBranch, ArrowRight, Sparkles, User, Mail, Lock } from 'lucide-react';
+import { Layers, ShieldCheck, Zap, GitBranch, ArrowRight, Sparkles, User, Mail, Lock, ArrowLeft } from 'lucide-react';
 
-export default function AuthPage() {
-  const [isLogin, setIsLogin] = useState(true);
+export default function AuthPage({ onBackToLanding, defaultIsLogin = true }) {
+  const [isLogin, setIsLogin] = useState(defaultIsLogin);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -115,6 +115,16 @@ export default function AuthPage() {
       {/* Right Form Container */}
       <div className="md:w-1/2 p-8 md:p-16 flex items-center justify-center bg-slate-950">
         <div className="max-w-md w-full">
+          {onBackToLanding && (
+            <button
+              type="button"
+              onClick={onBackToLanding}
+              className="mb-4 inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-indigo-400 font-semibold transition"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Back to Overview & Pricing</span>
+            </button>
+          )}
           {/* Quick Demo Access Bar */}
           <div className="mb-8 p-4 rounded-2xl bg-indigo-950/40 border border-indigo-500/30 flex items-center justify-between">
             <div>

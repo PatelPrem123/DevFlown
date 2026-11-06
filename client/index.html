@@ -2,9 +2,234 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DevFlow — Developer Project Management & Collaboration</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Primary Meta Tags -->
+    <title>DevFlow — Developer Project Management & Real-Time Agile Collaboration</title>
+    <meta name="title" content="DevFlow — Developer Project Management & Real-Time Agile Collaboration" />
+    <meta
+      name="description"
+      content="DevFlow is the ultra-fast developer project management and agile team collaboration platform featuring Lexorank fractional indexing Kanban, real-time Socket.IO synchronization, sprint automation, and GitHub integration."
+    />
+    <meta
+      name="keywords"
+      content="developer project management, agile collaboration, kanban board, sprint planning, lexorank, github integration, devops, jira alternative, linear alternative, real-time socket.io, prem patel, software engineering, burndown chart, saas, project management software"
+    />
+    <meta name="author" content="Prem Patel" />
+    <meta name="creator" content="Prem Patel" />
+    <meta name="publisher" content="DevFlow Inc." />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="theme-color" content="#4f46e5" />
+    <link rel="canonical" href="https://devflow.io/" />
+
+    <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="DevFlow" />
+    <meta property="og:title" content="DevFlow — Developer Project Management & Agile Collaboration" />
+    <meta
+      property="og:description"
+      content="Where agile planning meets real developer code. Accelerate engineering velocity with O(1) fractional drag-and-drop Kanban, sprint burndown telemetry, and GitHub sync."
+    />
+    <meta property="og:url" content="https://devflow.io/" />
+    <meta property="og:image" content="https://devflow.io/og-image.png" />
+    <meta property="og:image:secure_url" content="https://devflow.io/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="DevFlow Developer Platform Interface" />
+
+    <!-- E-Commerce Commercial Open Graph -->
+    <meta property="product:price:amount" content="29.00" />
+    <meta property="product:price:currency" content="USD" />
+    <meta property="product:availability" content="in stock" />
+    <meta property="product:brand" content="DevFlow" />
+    <meta property="product:condition" content="new" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@devflow_io" />
+    <meta name="twitter:creator" content="@PatelPrem123" />
+    <meta name="twitter:title" content="DevFlow — Developer Project Management Platform" />
+    <meta
+      name="twitter:description"
+      content="Ultra-fast agile collaboration for modern engineering teams. Fractional Kanban, real-time Socket.IO, sprint automation, and GitHub integration."
+    />
+    <meta name="twitter:image" content="https://devflow.io/og-image.png" />
+    <meta name="twitter:image:alt" content="DevFlow Platform Dashboard" />
+
+    <!-- Preconnect & Performance Optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Schema.org JSON-LD Structured Data for Rich Snippets & E-Commerce SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://devflow.io/#organization",
+          "name": "DevFlow Inc.",
+          "url": "https://devflow.io/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://devflow.io/favicon.svg",
+            "caption": "DevFlow Logo"
+          },
+          "founder": {
+            "@type": "Person",
+            "name": "Prem Patel"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "prempatel55299@gmail.com",
+            "contactType": "customer service",
+            "availableLanguage": ["English", "Hindi"]
+          },
+          "sameAs": [
+            "https://github.com/PatelPrem123/DevFlown"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://devflow.io/#website",
+          "url": "https://devflow.io/",
+          "name": "DevFlow",
+          "description": "Developer Project Management & Real-Time Agile Collaboration Platform",
+          "publisher": {
+            "@id": "https://devflow.io/#organization"
+          },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://devflow.io/?search={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": ["SoftwareApplication", "Product"],
+          "@id": "https://devflow.io/#product",
+          "name": "DevFlow Platform",
+          "applicationCategory": "DeveloperApplication, ProjectManagementApplication, BusinessApplication",
+          "operatingSystem": "Web, Windows, macOS, Linux",
+          "description": "Enterprise developer project management platform with Lexorank fractional indexing Kanban, real-time Socket.IO mesh, sprint automation, and GitHub sync.",
+          "brand": {
+            "@type": "Brand",
+            "name": "DevFlow"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "bestRating": "5",
+            "worstRating": "1",
+            "ratingCount": "142",
+            "reviewCount": "142"
+          },
+          "offers": [
+            {
+              "@type": "Offer",
+              "name": "DevFlow Free Starter Tier",
+              "price": "0",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock",
+              "url": "https://devflow.io/#pricing",
+              "priceValidUntil": "2027-12-31"
+            },
+            {
+              "@type": "Offer",
+              "name": "DevFlow Pro Developer Tier",
+              "price": "29.00",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock",
+              "url": "https://devflow.io/#pricing",
+              "priceValidUntil": "2027-12-31"
+            },
+            {
+              "@type": "Offer",
+              "name": "DevFlow Enterprise Architect Tier",
+              "price": "99.00",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock",
+              "url": "https://devflow.io/#pricing",
+              "priceValidUntil": "2027-12-31"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://devflow.io/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is DevFlow and how does it compare to Jira or Linear?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "DevFlow is a developer-first project management platform featuring O(1) Lexorank fractional drag-and-drop Kanban, native sprint rollover automation, two-tier RBAC, and real-time Socket.IO collaboration without the bloat of traditional tools."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does DevFlow synchronize with GitHub?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "DevFlow listens to GitHub webhook events using timing-safe HMAC verification and automatically links commits and pull requests to corresponding task keys (e.g., FLOW-101) in real-time."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What commercial pricing tiers are available on DevFlow?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "DevFlow offers a Free Starter tier ($0/mo for small teams), a Pro Developer tier ($29/mo with full sprints and GitHub webhooks), and an Enterprise Architect tier ($99/mo with custom RBAC, AES-256 cipher vaults, and dedicated support)."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can DevFlow be self-hosted on private infrastructure?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, DevFlow supports full on-premises and private cloud deployments via Docker and Kubernetes with MongoDB 7.x persistence."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://devflow.io/#breadcrumbs",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://devflow.io/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "E-Commerce Pricing",
+              "item": "https://devflow.io/#pricing"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Interactive Kanban",
+              "item": "https://devflow.io/#features"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": "Documentation",
+              "item": "https://devflow.io/#docs"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
   </head>
   <body class="bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 antialiased min-h-screen">
     <div id="root"></div>

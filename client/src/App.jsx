@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthStore } from './store/useAuthStore.js';
+import { useSEO } from './hooks/useSEO.js';
+import LandingPage from './pages/LandingPage.jsx';
 import AuthPage from './pages/AuthPage.jsx';
 import KanbanBoard from './components/kanban/KanbanBoard.jsx';
 import SprintsPage from './pages/SprintsPage.jsx';
@@ -10,6 +12,7 @@ import SettingsPage from './pages/SettingsPage.jsx';
 import CreateProjectModal from './components/common/CreateProjectModal.jsx';
 import CreateWorkspaceModal from './components/common/CreateWorkspaceModal.jsx';
 import CreateTaskModal from './components/tasks/CreateTaskModal.jsx';
+import CheckoutModal from './components/common/CheckoutModal.jsx';
 
 import {
   Layers,
@@ -27,7 +30,11 @@ import {
   ChevronDown,
   User,
   Sparkles,
-  LayoutGrid
+  LayoutGrid,
+  CreditCard,
+  ShoppingBag,
+  ExternalLink,
+  ArrowLeft
 } from 'lucide-react';
 
 export default function App() {
@@ -42,10 +49,17 @@ export default function App() {
     initAuth,
     setActiveWorkspace,
     setActiveProject,
+    loginDemo,
     logout
   } = useAuthStore();
 
   const [activeTab, setActiveTab] = useState('kanban');
+  const [showAuthPage, setShowAuthPage] = useState(false);
+  const [authIsLogin, setAuthIsLogin] = useState(true);
+  const [showPublicLanding, setShowPublicLanding] = useState(false);
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
+  const [selectedPlanForCheckout, setSelectedPlanForCheckout] = useState(null);
+
   const [showNewProjectModal, setShowNewProjectModal] = useState(false);
   const [showNewWorkspaceModal, setShowNewWorkspaceModal] = useState(false);
   const [showNewTaskModal, setShowNewTaskModal] = useState(false);
@@ -53,6 +67,22 @@ export default function App() {
   useEffect(() => {
     initAuth();
   }, []);
+
+  const TAB_TITLES = {
+    kanban: 'Interactive Kanban Board — DevFlow',
+    sprints: 'Agile Sprint Orchestration & Rollover — DevFlow',
+    milestones: 'Milestone Release Gates — DevFlow',
+    analytics: 'Sprint Burndown & Velocity Telemetry — DevFlow',
+    github: 'GitHub Ingress & Commit Sync — DevFlow',
+    settings: 'Workspace Settings & Two-Tier RBAC — DevFlow'
+  };
+
+  useSEO({
+    title: user && !showPublicLanding
+      ? (TAB_TITLES[activeTab] || 'DevFlow Dashboard')
+      : 'DevFlow — Developer Project Management & Real-Time Agile Collaboration',
+    description: 'DevFlow is the ultra-fast developer project management and agile team collaboration platform featuring Lexorank fractional indexing Kanban, real-time Socket.IO synchronization, sprint automation, and GitHub integration.'
+  });
 
   // Show loading spinner during session verification
   if (loading) {
@@ -66,9 +96,50 @@ export default function App() {
     );
   }
 
-  // If not logged in, render the full Auth Experience
+  // If not logged in, render the SEO-Optimized Public Showcase or Auth Form
   if (!user || !token) {
-    return <AuthPage />;
+    if (showAuthPage) {
+      return (
+        <AuthPage
+          onBackToLanding={() => setShowAuthPage(false)}
+          defaultIsLogin={authIsLogin}
+        />
+      );
+    }
+    return (
+      <LandingPage
+        onOpenAuth={(isLogin) => {
+          setAuthIsLogin(isLogin);
+          setShowAuthPage(true);
+        }}
+        onLaunchDemo={loginDemo}
+      />
+    );
+  }
+
+  // If authenticated user chooses to preview the Public SEO Storefront
+  if (showPublicLanding) {
+    return (
+      <div className="relative">
+        <div className="sticky top-0 z-50 bg-indigo-600 text-white px-4 py-2 text-xs font-bold flex items-center justify-between shadow-lg">
+          <div className="flex items-center gap-2">
+            <Sparkles className="w-4 h-4 text-amber-300" />
+            <span>Previewing Public SEO & E-Commerce Storefront as <strong>{user.name}</strong></span>
+          </div>
+          <button
+            onClick={() => setShowPublicLanding(false)}
+            className="px-3 py-1 bg-white text-indigo-700 hover:bg-slate-100 rounded-lg text-xs font-bold transition flex items-center gap-1 active:scale-95"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            <span>Return to Workspace Dashboard</span>
+          </button>
+        </div>
+        <LandingPage
+          onOpenAuth={() => setShowPublicLanding(false)}
+          onLaunchDemo={() => setShowPublicLanding(false)}
+        />
+      </div>
+    );
   }
 
   return (
@@ -154,6 +225,24 @@ export default function App() {
 
         {/* Header Right Actions */}
         <div className="flex items-center space-x-3">
+          {/* E-Commerce Upgrade Plan Button */}
+          <button
+            onClick={() => {
+              setSelectedPlanForCheckout({
+                id: 'pro',
+                name: 'Pro Agile Team',
+                monthlyPrice: 29,
+                annualPrice: 279
+              });
+              setShowUpgradeModal(true);
+            }}
+            className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 hover:bg-amber-500/20 transition cursor-pointer active:scale-95"
+            title="Upgrade to Pro Plan"
+          >
+            <Sparkles className="w-3 h-3 text-amber-500" />
+            <span>Upgrade Plan</span>
+          </button>
+
           {/* Real-time Socket Indicator */}
           <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400 border border-emerald-200/80 dark:border-emerald-800/60">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -280,6 +369,32 @@ export default function App() {
                   <Settings className="w-4 h-4" />
                   <span>Settings & RBAC</span>
                 </button>
+
+                {/* Commercial E-Commerce Subscription Action */}
+                <button
+                  onClick={() => {
+                    setSelectedPlanForCheckout({
+                      id: 'pro',
+                      name: 'Pro Agile Team',
+                      monthlyPrice: 29,
+                      annualPrice: 279
+                    });
+                    setShowUpgradeModal(true);
+                  }}
+                  className="w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+                >
+                  <CreditCard className="w-4 h-4 text-amber-500" />
+                  <span>Plans & Pricing</span>
+                </button>
+
+                {/* View Public SEO Storefront */}
+                <button
+                  onClick={() => setShowPublicLanding(true)}
+                  className="w-full flex items-center space-x-3 px-3 py-2 rounded-xl text-xs font-semibold text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+                >
+                  <ShoppingBag className="w-4 h-4" />
+                  <span>Public Showcase</span>
+                </button>
               </nav>
             </div>
           </div>
@@ -340,6 +455,14 @@ export default function App() {
         projectId={activeProject?._id || activeProject?.id}
         isOpen={showNewTaskModal}
         onClose={() => setShowNewTaskModal(false)}
+      />
+
+      {/* Commercial Checkout Modal */}
+      <CheckoutModal
+        isOpen={showUpgradeModal}
+        selectedPlan={selectedPlanForCheckout}
+        onClose={() => setShowUpgradeModal(false)}
+        onPlanActivated={() => setShowUpgradeModal(false)}
       />
     </div>
   );

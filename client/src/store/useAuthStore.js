@@ -70,6 +70,17 @@ export const useAuthStore = create((set, get) => ({
     }
   },
 
+  // 1-Click Demo Login
+  loginDemo: async () => {
+    const demoEmail = 'alex.lead@devflow.io';
+    const demoPass = 'DevFlow2026!';
+    let res = await get().login(demoEmail, demoPass);
+    if (!res.success) {
+      res = await get().register('Alex Mercer (Lead Architect)', demoEmail, demoPass);
+    }
+    return res;
+  },
+
   // Logout
   logout: () => {
     localStorage.removeItem('devflow_token');

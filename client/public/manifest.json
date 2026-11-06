@@ -1,0 +1,18 @@
+{
+  "short_name": "DevFlow",
+  "name": "DevFlow — Developer Project Management & Collaboration",
+  "description": "Ultra-fast developer project management and agile team collaboration platform with Lexorank fractional indexing Kanban and GitHub integration.",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192 512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#090d16",
+  "theme_color": "#4f46e5",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "categories": ["productivity", "developer tools", "business"]
+}
