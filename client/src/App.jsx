@@ -98,15 +98,15 @@ export default function App() {
             <div className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
               <Building2 className="w-3.5 h-3.5 text-indigo-500" />
               <select
-                value={activeWorkspace?._id || ''}
+                value={activeWorkspace?._id || activeWorkspace?.id || ''}
                 onChange={(e) => {
-                  const ws = workspaces.find((w) => w._id === e.target.value);
+                  const ws = workspaces.find((w) => (w._id || w.id) === e.target.value);
                   if (ws) setActiveWorkspace(ws);
                 }}
                 className="bg-transparent text-xs font-bold text-slate-800 dark:text-slate-200 focus:outline-none cursor-pointer"
               >
                 {workspaces.map((w) => (
-                  <option key={w._id} value={w._id} className="dark:bg-slate-900">
+                  <option key={w._id || w.id} value={w._id || w.id} className="dark:bg-slate-900">
                     {w.name}
                   </option>
                 ))}
@@ -128,9 +128,9 @@ export default function App() {
               <div className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
                 <FolderKanban className="w-3.5 h-3.5 text-amber-500" />
                 <select
-                  value={activeProject?._id || ''}
+                  value={activeProject?._id || activeProject?.id || ''}
                   onChange={(e) => {
-                    const p = projects.find((proj) => proj._id === e.target.value);
+                    const p = projects.find((proj) => (proj._id || proj.id) === e.target.value);
                     if (p) setActiveProject(p);
                   }}
                   className="bg-transparent text-xs font-bold text-slate-800 dark:text-slate-200 focus:outline-none cursor-pointer"
@@ -139,7 +139,7 @@ export default function App() {
                     <option value="">No projects</option>
                   ) : (
                     projects.map((p) => (
-                      <option key={p._id} value={p._id} className="dark:bg-slate-900">
+                      <option key={p._id || p.id} value={p._id || p.id} className="dark:bg-slate-900">
                         {p.name} ({p.key})
                       </option>
                     ))
@@ -318,14 +318,14 @@ export default function App() {
             </div>
           ) : (
             <>
-              {activeTab === 'kanban' && <KanbanBoard projectId={activeProject._id} />}
-              {activeTab === 'sprints' && <SprintsPage projectId={activeProject._id} />}
-              {activeTab === 'milestones' && <MilestonesPage projectId={activeProject._id} />}
-              {activeTab === 'analytics' && <AnalyticsPage projectId={activeProject._id} />}
+              {activeTab === 'kanban' && <KanbanBoard projectId={activeProject._id || activeProject.id} />}
+              {activeTab === 'sprints' && <SprintsPage projectId={activeProject._id || activeProject.id} />}
+              {activeTab === 'milestones' && <MilestonesPage projectId={activeProject._id || activeProject.id} />}
+              {activeTab === 'analytics' && <AnalyticsPage projectId={activeProject._id || activeProject.id} />}
               {activeTab === 'github' && (
-                <GitHubPage projectId={activeProject._id} workspaceId={activeWorkspace?._id} />
+                <GitHubPage projectId={activeProject._id || activeProject.id} workspaceId={activeWorkspace?._id || activeWorkspace?.id} />
               )}
-              {activeTab === 'settings' && <SettingsPage workspaceId={activeWorkspace?._id} />}
+              {activeTab === 'settings' && <SettingsPage workspaceId={activeWorkspace?._id || activeWorkspace?.id} />}
             </>
           )}
         </main>
@@ -343,7 +343,7 @@ export default function App() {
       />
 
       <CreateTaskModal
-        projectId={activeProject?._id}
+        projectId={activeProject?._id || activeProject?.id}
         isOpen={showNewTaskModal}
         onClose={() => setShowNewTaskModal(false)}
       />

@@ -89,12 +89,13 @@ export const useAuthStore = create((set, get) => ({
       const res = await api.get('/workspaces');
       const workspaces = res.data.data.workspaces || [];
       const current = get().activeWorkspace;
+      const currentId = current?.id || current?._id;
 
-      const activeWorkspace = workspaces.find(w => w._id === current?._id) || workspaces[0] || null;
+      const activeWorkspace = workspaces.find(w => (w.id || w._id) === currentId) || workspaces[0] || null;
       set({ workspaces, activeWorkspace });
 
       if (activeWorkspace) {
-        await get().fetchProjects(activeWorkspace._id);
+        await get().fetchProjects(activeWorkspace.id || activeWorkspace._id);
       }
     } catch (err) {
       console.error('Failed to load workspaces:', err);
@@ -108,17 +109,18 @@ export const useAuthStore = create((set, get) => ({
       const newWs = res.data.data.workspace;
       const workspaces = [...get().workspaces, newWs];
       set({ workspaces, activeWorkspace: newWs });
-      await get().fetchProjects(newWs._id);
+      await get().fetchProjects(newWs.id || newWs._id);
       return { success: true, workspace: newWs };
     } catch (err) {
-      return { success: false, message: err.response?.data?.error?.message || 'Failed to create workspace' };
+      const detailMsg = err.response?.data?.error?.details?.[0]?.message;
+      return { success: false, message: detailMsg || err.response?.data?.error?.message || 'Failed to create workspace' };
     }
   },
 
   setActiveWorkspace: async (workspace) => {
     set({ activeWorkspace: workspace, projects: [], activeProject: null });
     if (workspace) {
-      await get().fetchProjects(workspace._id);
+      await get().fetchProjects(workspace.id || workspace._id);
     }
   },
 
@@ -129,8 +131,9 @@ export const useAuthStore = create((set, get) => ({
       const res = await api.get(`/projects?workspaceId=${workspaceId}`);
       const projects = res.data.data.projects || [];
       const current = get().activeProject;
+      const currentId = current?.id || current?._id;
 
-      const activeProject = projects.find(p => p._id === current?._id) || projects[0] || null;
+      const activeProject = projects.find(p => (p.id || p._id) === currentId) || projects[0] || null;
       set({ projects, activeProject });
     } catch (err) {
       console.error('Failed to load projects:', err);
@@ -142,19 +145,23 @@ export const useAuthStore = create((set, get) => ({
     const ws = get().activeWorkspace;
     if (!ws) return { success: false, message: 'No active workspace selected' };
 
+    const workspaceId = ws.id || ws._id;
+    if (!workspaceId) return { success: false, message: 'Active workspace ID could not be determined' };
+
     try {
       const res = await api.post('/projects', {
         name,
         key: key.toUpperCase(),
         description: description || '',
-        workspaceId: ws._id
+        workspaceId
       });
       const newProj = res.data.data.project;
       const projects = [...get().projects, newProj];
       set({ projects, activeProject: newProj });
       return { success: true, project: newProj };
     } catch (err) {
-      return { success: false, message: err.response?.data?.error?.message || 'Failed to create project' };
+      const detailMsg = err.response?.data?.error?.details?.[0]?.message;
+      return { success: false, message: detailMsg || err.response?.data?.error?.message || 'Failed to create project' };
     }
   },
 

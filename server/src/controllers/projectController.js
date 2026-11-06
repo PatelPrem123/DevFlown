@@ -76,6 +76,7 @@ export const createProject = async (req, res, next) => {
       data: {
         project: {
           id: project._id,
+          _id: project._id,
           workspaceId: project.workspaceId,
           name: project.name,
           key: project.key,
@@ -157,6 +158,7 @@ export const getProjects = async (req, res, next) => {
 
     const projectList = projects.map(p => ({
       id: p._id,
+      _id: p._id,
       name: p.name,
       key: p.key,
       description: p.description,
@@ -195,6 +197,7 @@ export const getProjectById = async (req, res, next) => {
       data: {
         project: {
           id: project._id,
+          _id: project._id,
           workspaceId: project.workspaceId,
           name: project.name,
           key: project.key,

@@ -38,6 +38,7 @@ export const getMyWorkspaces = async (req, res, next) => {
       .filter(m => m.workspaceId)
       .map(m => ({
         id: m.workspaceId._id,
+        _id: m.workspaceId._id,
         name: m.workspaceId.name,
         slug: m.workspaceId.slug,
         description: m.workspaceId.description,
@@ -101,6 +102,7 @@ export const createWorkspace = async (req, res, next) => {
       data: {
         workspace: {
           id: workspace._id,
+          _id: workspace._id,
           name: workspace.name,
           slug: workspace.slug,
           description: workspace.description,
@@ -131,6 +133,7 @@ export const getWorkspaceById = async (req, res, next) => {
       data: {
         workspace: {
           id: workspace._id,
+          _id: workspace._id,
           name: workspace.name,
           slug: workspace.slug,
           description: workspace.description,
